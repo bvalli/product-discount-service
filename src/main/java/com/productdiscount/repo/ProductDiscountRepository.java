@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.productdiscount.model.Product;
+import com.productdiscount.util.ProductConstants;
 
 
 public class ProductDiscountRepository {
@@ -23,42 +24,42 @@ public class ProductDiscountRepository {
 		List<Product> productList;
 		
 		Product product1=new Product();
-		product1.setProductName("Rice");
+		product1.setProductName(ProductConstants.RICE);
 		product1.setProductMRP(500);
 		product1.setProductEpiryDate( LocalDate.of(2024, 9, 18));
 		
 		Product product2=new Product();
-		product2.setProductName("Milk");
+		product2.setProductName(ProductConstants.MILK);
 		product2.setProductMRP(40);
 		product2.setProductEpiryDate( LocalDate.of(2024, 8, 8));
 		
 		Product product3=new Product();
-		product3.setProductName("Salt");
+		product3.setProductName(ProductConstants.SALT);
 		product3.setProductMRP(80);
 		product3.setProductEpiryDate( LocalDate.of(2024, 9, 30));
 		
 		Product product4=new Product();
-		product4.setProductName("Pepper");
+		product4.setProductName(ProductConstants.PEPPER);
 		product4.setProductMRP(150);
 		product4.setProductEpiryDate( LocalDate.of(2024, 10, 18));
 		
 		Product product5=new Product();
-		product5.setProductName("Paneer");
+		product5.setProductName(ProductConstants.PANEER);
 		product5.setProductMRP(200);
 		product5.setProductEpiryDate( LocalDate.of(2024, 8, 9));
 		
 		Product product6=new Product();
-		product6.setProductName("Thumsup");
+		product6.setProductName(ProductConstants.THUMSUP);
 		product6.setProductMRP(30);
 		product6.setProductEpiryDate( LocalDate.of(2024, 8, 7));
 		
 		Product product7=new Product();
-		product7.setProductName("Dairy Milk");
+		product7.setProductName(ProductConstants.DAIRY_MILK);
 		product7.setProductMRP(50);
 		product7.setProductEpiryDate( LocalDate.of(2024, 8, 7));
 		
 		Product product8=new Product();
-		product8.setProductName("Curd");
+		product8.setProductName(ProductConstants.CURD);
 		product8.setProductMRP(48);
 		product8.setProductEpiryDate( LocalDate.of(2024, 8, 9));
 		
@@ -77,7 +78,7 @@ public class ProductDiscountRepository {
 	 */
 	
 	public static List<String> getPerishedGoods(){
-		return Arrays.asList("Milk","Vegetables","Paneer","Curd");
+		return Arrays.asList(ProductConstants.MILK,"Vegetables",ProductConstants.PANEER,ProductConstants.CURD);
 	}
 	
 	/**
@@ -86,7 +87,7 @@ public class ProductDiscountRepository {
 	 */
 	
 	public static List<String> getNonPerishedGoods(){
-		return Arrays.asList("Rice","Salt","Pepper");
+		return Arrays.asList(ProductConstants.RICE,ProductConstants.SALT,ProductConstants.PEPPER);
 	}
 	
 	/**
@@ -100,21 +101,21 @@ public class ProductDiscountRepository {
 
 		if (getPerishedGoods().contains(productName)) {
 			if (daysToExpiry <= 1) {
-				discountToApply = 35;
+				discountToApply = ProductConstants.DISCOUNT_THIRTY_FIVE;
 			} else if (daysToExpiry == 2) {
-				discountToApply = 25;
+				discountToApply = ProductConstants.DISCOUNT_TWENTY_FIVE;
 			} else if (daysToExpiry == 3) {
-				discountToApply = 15;
+				discountToApply = ProductConstants.DISCOUNT_FIFTEEN;
 			}
 		} else if (getNonPerishedGoods().contains(productName)) {
 			if (daysToExpiry <= 15) {
-				discountToApply = 50;
+				discountToApply = ProductConstants.DISCOUNT_FIFTY;
 			} else if (daysToExpiry <= 30) {
-				discountToApply = 30;
+				discountToApply = ProductConstants.DISCOUNT_THIRTY;
 			} else if (daysToExpiry <= 60) {
-				discountToApply = 20;
+				discountToApply = ProductConstants.DISCOUNT_TWENTY;
 			} else if (daysToExpiry <= 90) {
-				discountToApply = 10;
+				discountToApply = ProductConstants.DISCOUNT_TEN;
 			}
 		}
 

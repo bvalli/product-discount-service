@@ -27,11 +27,15 @@ public class ProductDiscountService {
 		logger.info("getUpdatedProductDetails method started {}");
 		List<Product> productList = ProductDiscountRepository.getProductList().stream().peek(product -> {
 			double discountToApply= ProductDiscountRepository.getDiscountToApply(product.getProductName(), product.getProductEpiryDate());
+			if(discountToApply > 0) {
 			double discountedPrice = product.getProductMRP() - (product.getProductMRP() * (discountToApply/100));
 			product.setProductMRP(discountedPrice);
+			}else {
+				logger.info("Discount not applied for product ={} ",product.getProductName());
+			}
 
 		}).collect(Collectors.toList());
-		logger.info("Product_list_after_applying_discount_on_products {}"+productList);
+		logger.info("Product_list_after_applying_discount_on_products {}",productList);
 		return Optional.of(productList);
 	}
 }
