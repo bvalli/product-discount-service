@@ -1,0 +1,4 @@
+com\productdiscount\model\Product.class
+com\productdiscount\ProductDiscountServiceApp.class
+com\productdiscount\repo\ProductDiscountRepository.class
+com\productdiscount\service\ProductDiscountService.class
